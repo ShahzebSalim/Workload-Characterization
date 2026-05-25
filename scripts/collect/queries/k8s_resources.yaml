@@ -1,0 +1,19 @@
+k8s_cpu_pod_rate:
+  query: |
+    sum by (namespace, pod) (
+      rate(container_cpu_usage_seconds_total{container!="",pod!=""}[5m])
+    )
+
+k8s_mem_pod_working_set:
+  query: |
+    sum by (namespace, pod) (
+      container_memory_working_set_bytes{container!="",pod!=""}
+    )
+
+k8s_pod_restarts_total:
+  query: |
+    sum by (namespace, pod) (kube_pod_container_status_restarts_total)
+
+k8s_pod_ready:
+  query: |
+    max by (namespace, pod) (kube_pod_status_ready{condition="true"})

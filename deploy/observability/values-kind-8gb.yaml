@@ -1,0 +1,52 @@
+# Conservative kube-prometheus-stack values for kind on 8GB RAM
+
+# Keep retention short to reduce disk/memory pressure
+prometheus:
+  prometheusSpec:
+    retention: 6h
+    resources:
+      requests:
+        cpu: 200m
+        memory: 600Mi
+      limits:
+        memory: 1.2Gi
+
+    # Reduce TSDB load
+    scrapeInterval: 30s
+    evaluationInterval: 30s
+
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+
+grafana:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 150Mi
+    limits:
+      memory: 400Mi
+
+alertmanager:
+  enabled: false
+
+# Reduce extra components if you hit resource limits
+kubeStateMetrics:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 100Mi
+
+prometheus-node-exporter:
+  resources:
+    requests:
+      cpu: 25m
+      memory: 60Mi
+
+# Disable some default rules if needed
+# defaultRules:
+#   create: true

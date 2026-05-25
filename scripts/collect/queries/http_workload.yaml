@@ -1,0 +1,19 @@
+# Example HTTP workload queries.
+# These depend on what metrics your app exports. Replace metric names/labels to match your environment.
+
+# Common patterns:
+# - http_requests_total
+# - http_server_requests_seconds_count (Spring)
+# - istio_requests_total (if using Istio)
+
+http_requests_rate:
+  query: |
+    sum by (namespace, pod) (
+      rate(http_requests_total[1m])
+    )
+
+http_latency_p95_seconds:
+  query: |
+    histogram_quantile(0.95,
+      sum by (le, namespace, pod) (rate(http_request_duration_seconds_bucket[5m]))
+    )

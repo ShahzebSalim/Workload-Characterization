@@ -1,0 +1,8 @@
+# Data directory
+
+Place collected datasets here.
+
+- Keep raw exports under `data/raw/<run_id>/...`
+- Keep processed/derived datasets under `data/processed/<run_id>/...`
+
+This file exists so the `data/` directory is tracked even though raw data is ignored.
