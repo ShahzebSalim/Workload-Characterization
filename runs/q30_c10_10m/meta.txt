@@ -1,0 +1,10 @@
+run_name=q30_c10_10m
+start_epoch=1779958657
+end_epoch=1779959259
+export_start_epoch=1779958357
+export_end_epoch=1779959559
+step=5
+duration=10m
+concurrency=10
+q_per_worker=30
+url=http://127.0.0.1:8080/

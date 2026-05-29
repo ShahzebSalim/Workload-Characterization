@@ -1,0 +1,10 @@
+run_name=repro_q10
+start_epoch=1779960701
+end_epoch=1779960731
+export_start_epoch=1779960401
+export_end_epoch=1779961031
+step=5
+duration=30s
+concurrency=10
+q_per_worker=10
+url=http://127.0.0.1:8080/

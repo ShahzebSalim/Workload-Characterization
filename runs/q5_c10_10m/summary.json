@@ -1,0 +1,59 @@
+{
+  "hey": {
+    "arrival_rate_rps": 35.369384359400996,
+    "duration_seconds": 601,
+    "error_fraction": 0.9951545373288799,
+    "latency_seconds": {
+      "max": 16.2964,
+      "mean": 0.04845467845886061,
+      "median": 0.0079,
+      "min": 0.0023,
+      "p90": 0.0147,
+      "p95": 0.0231,
+      "p99": 0.2137239999999907
+    },
+    "requests": 21257,
+    "status_counts": {
+      "200": 103,
+      "500": 21154
+    }
+  },
+  "prometheus": {
+    "cpu_mean_cores_by_pod": {
+      "adservice-64dd5464b8-njz96": 0.027734065846303294,
+      "cartservice-c96c85b55-9v2kt": 0.02375378013101398,
+      "checkoutservice-dcf4c5c7b-cqpzd": 0.003651532568405374,
+      "currencyservice-8fdf6cf9d-8zlx2": 0.10845055455454619,
+      "emailservice-7fd5f66d9d-pn94r": 0.015585936248116508,
+      "frontend-759775d795-97pzx": 0.05416543131807889,
+      "paymentservice-66c65775b-8tp7v": 0.007218962374302543,
+      "productcatalogservice-c4cfd98fb-52hf5": 0.005684723020989394,
+      "recommendationservice-b5b5bfc56-sl4nf": 0.01940977864593571,
+      "redis-cart-6899b65948-t4dgl": 0.008794520448223915,
+      "shippingservice-5dcc4d7bd-gsbz6": 0.005286289921477854
+    },
+    "cpu_total_mean_cores": 0.27973557507739377,
+    "mem_mean_bytes_by_pod": {
+      "adservice-64dd5464b8-njz96": 525618015.2066116,
+      "cartservice-c96c85b55-9v2kt": 317943875.70247936,
+      "checkoutservice-dcf4c5c7b-cqpzd": 37603480.33057851,
+      "currencyservice-8fdf6cf9d-8zlx2": 206006627.43801653,
+      "emailservice-7fd5f66d9d-pn94r": 123271320.3305785,
+      "frontend-759775d795-97pzx": 55812840.72727273,
+      "paymentservice-66c65775b-8tp7v": 182784000.0,
+      "productcatalogservice-c4cfd98fb-52hf5": 47231788.42975207,
+      "recommendationservice-b5b5bfc56-sl4nf": 113614407.9338843,
+      "redis-cart-6899b65948-t4dgl": 27963933.61983471,
+      "shippingservice-5dcc4d7bd-gsbz6": 37200210.51239669
+    },
+    "mem_total_mean_bytes": 1675050500.231405
+  },
+  "run": {
+    "concurrency": "10",
+    "end_epoch": 1779958056,
+    "name": "q5_c10_10m",
+    "q_per_worker": "5",
+    "start_epoch": 1779957455,
+    "url": "http://127.0.0.1:8080/"
+  }
+}

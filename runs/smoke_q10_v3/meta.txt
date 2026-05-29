@@ -1,0 +1,10 @@
+run_name=smoke_q10_v3
+start_epoch=1779961479
+end_epoch=1779961520
+export_start_epoch=1779961179
+export_end_epoch=1779961820
+step=5
+duration=30s
+concurrency=10
+q_per_worker=10
+url=http://127.0.0.1:8080/

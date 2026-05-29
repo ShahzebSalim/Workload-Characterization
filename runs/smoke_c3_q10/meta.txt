@@ -1,0 +1,10 @@
+run_name=smoke_c3_q10
+start_epoch=1779962045
+end_epoch=1779962080
+export_start_epoch=1779961745
+export_end_epoch=1779962380
+step=5
+duration=30s
+concurrency=3
+q_per_worker=10
+url=http://127.0.0.1:8080/
