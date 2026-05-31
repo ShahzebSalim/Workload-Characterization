@@ -1,0 +1,10 @@
+run_name=pure_math_run
+start_epoch=1780101603
+end_epoch=1780101903
+export_start_epoch=1780101303
+export_end_epoch=1780102203
+step=5
+duration=5m
+concurrency=1
+q_per_worker=2
+url=http://127.0.0.1:8080/

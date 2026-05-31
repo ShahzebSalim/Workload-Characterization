@@ -30,7 +30,7 @@ def acf(x: np.ndarray, max_lag: int) -> np.ndarray:
 def plot_acf(values: np.ndarray, max_lag: int, out_path: Path, title: str) -> None:
     a = acf(values, max_lag)
     plt.figure(figsize=(7, 3.5))
-    plt.stem(range(len(a)), a, use_line_collection=True)
+    plt.stem(range(len(a)), a)
     plt.xlabel("lag")
     plt.ylabel("ACF")
     plt.title(title)

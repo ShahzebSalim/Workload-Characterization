@@ -1,0 +1,10 @@
+run_name=clean_baseline
+start_epoch=1780100863
+end_epoch=1780101463
+export_start_epoch=1780100563
+export_end_epoch=1780101763
+step=5
+duration=10m
+concurrency=2
+q_per_worker=5
+url=http://127.0.0.1:8080/
