@@ -1,56 +1,36 @@
-# Workload Characterization (Software Performance Engineering)
+# Workload Characterization: Google Online Boutique
 
-Microservice workload trace collection and statistical characterization (arrival + service processes) for a Kubernetes-deployed benchmark.
+**Authors:** Shahzeb Salim & Aneeza Maroof
+**Course:** Software Performance Engineering
 
-## Project objective
-Collect and analyze workload traces from a Kubernetes-deployed microservice benchmark to characterize:
-- **Arrivals** (arrival rate process, burstiness, autocorrelation, stationarity)
-- **Service times** (per-service request latency / service-time proxies)
-- **Resource behavior** (CPU/memory, queue lengths where available)
+**Please see the `Shahzeb_Aneeza_Workload_Report.pdf` file for the comprehensive narrative on our methodology, smoke testing, failure analysis, and figure sourcing.**
 
-You will:
-1) deploy a benchmark microservice app on Kubernetes
-2) run a controlled load generator
-3) collect traces + metrics
-4) fit distributions and analyze temporal structure
-5) produce a short report with findings and modeling implications
+## Project Overview
+This repository contains the infrastructure scripts, load generation configurations, and statistical analysis code required to characterize the workload of the Google Online Boutique microservice application deployed on a local Kubernetes cluster.
 
-## Recommended testbed (default)
-**Google Online Boutique (microservices-demo)** because it includes a built-in load generator and is widely used in research/teaching.
+## Project Flow & Reproducibility
 
-You can switch to Sock Shop or µBench later—this repo is structured to keep data + scripts portable.
+### Phase 1: Infrastructure & Observability
+The System Under Test (SUT) was deployed using `kind` (Kubernetes IN Docker) on a local Apple M1 environment.
+* **Application:** Deployed the standard 11-tier Google Online Boutique microservice architecture.
+* **Observability:** Deployed the `kube-prometheus-stack` to establish Prometheus for metric scraping (CPU, Memory, Network) and Grafana for live visualization. (See the `deploy/` folder for manifest configurations).
 
-## Repo layout
-- `deploy/` Kubernetes manifests / Helm notes
-- `scripts/` data collection + analysis pipeline
-- `notebooks/` exploratory analysis
-- `data/` local datasets (not committed by default)
-- `report/` report template
+### Phase 2: Load Generation & Metric Collection
+Load generation was orchestrated using the `hey` utility. 
+To reproduce the data collection:
+1. Ensure the `boutique` namespace is running.
+2. Execute the shell script: `./scripts/run_experiment.sh`
+This script applies the designated concurrency load and automatically extracts the telemetry metrics from Prometheus.
 
-## Quick start (local cluster)
-### 1) Create a Kubernetes cluster
-Pick one:
-- **kind** (recommended): https://kind.sigs.k8s.io/
-- **minikube**
+### Phase 3: Statistical Analysis
+The raw data is processed using Python (Pandas, SciPy, Statsmodels).
+To reproduce the mathematical fitting and charts:
+1. Navigate to the analysis directory: `cd scripts/analysis`
+2. Run the distribution fitter: `python3 fit_distributions.py`
+3. Run the time-series diagnostics: `python3 time_series_diagnostics.py`
 
-### 2) Deploy Online Boutique
-See `deploy/online-boutique/README.md`.
+*Note: Due to memory saturation boundaries (OOMKilled events) on the local host during high-load tests, the final distribution fitting was isolated to the `pure_math_run` dataset to ensure uncorrupted mathematical modeling.*
 
-### 3) Install Prometheus + Grafana
-See `deploy/observability/README.md`.
-
-### 4) Generate load + collect data
-See `scripts/collect/README.md`.
-
-### 5) Run analysis
-See `scripts/analysis/README.md`.
-
-## Deliverables checklist
-- [ ] Dataset (metrics exports + trace extracts) and scripts used to collect them
-- [ ] Analysis scripts fitting distributions (Poisson/exponential/Pareto/heavy-tailed)
-- [ ] Autocorrelation / burstiness / stationarity analysis
-- [ ] Report with descriptive stats, fitted models, interpretation
-
-## Notes
-- This repo intentionally separates **collection** from **analysis** so you can re-run analysis on multiple data captures.
-- Start with Prometheus metrics; optionally add tracing (OpenTelemetry/Jaeger) for richer per-request service-time breakdowns.
+## Data Architecture
+* `runs/`: Contains the raw Prometheus JSON exports and `hey` CSV traces generated directly by our load-testing script. This serves as the raw telemetry proof of our test executions.
+* `data/processed/`: Contains our cleaned, filtered datasets (e.g., isolating HTTP 200 OK responses) used for the final mathematical distribution fitting and time-series analysis.
