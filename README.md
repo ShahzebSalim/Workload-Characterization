@@ -12,8 +12,9 @@ This repository contains the infrastructure scripts, load generation configurati
 
 ### Phase 1: Infrastructure & Observability
 The System Under Test (SUT) was deployed using `kind` (Kubernetes IN Docker) on a local Apple M1 environment.
-* **Application:** Deployed the standard 11-tier Google Online Boutique microservice architecture.
-* **Observability:** Deployed the `kube-prometheus-stack` to establish Prometheus for metric scraping (CPU, Memory, Network) and Grafana for live visualization. (See the `deploy/` folder for manifest configurations).
+* **Application:** Deployed the standard 11-tier Google Online Boutique microservice architecture directly from the upstream release manifests.
+* **Observability:** Deployed the `kube-prometheus-stack` to establish Prometheus for metric scraping (CPU, Memory, Network) and Grafana for live visualization. 
+*(Note: Custom configurations for the Kind cluster and Prometheus resource limits are located in the `deploy/` directory).*
 
 ### Phase 2: Load Generation & Metric Collection
 Load generation was orchestrated using the `hey` utility. 
